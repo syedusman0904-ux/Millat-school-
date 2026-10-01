@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Millat School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand-row">
+      <div class="brand">Millat School</div>
+      <div class="today" id="todayLabel"></div>
+    </div>
+    <nav class="tabs">
+      <button class="active" data-view="home" onclick="showView('home')">Home</button>
+      <button data-view="attendance" onclick="showView('attendance')">Attendance</button>
+    </nav>
+  </header>
+
+  <section id="view-home" class="active">
+    <div class="cover">
+      <div class="cover-badge">MS</div>
+      <h1 class="cover-title">Millat School</h1>
+      <p class="cover-tagline">Where Knowledge Meets Character</p>
+      <p class="cover-sub">Shaping confident, capable learners through quality education, strong values, and dedicated teaching — nurturing every student from Class 1 to Class 8, one day at a time.</p>
+      <div class="cover-chips">
+        <span class="chip">📚 8 Classes</span>
+        <span class="chip">🎓 Quality Education</span>
+        <span class="chip">🤝 Caring Faculty</span>
+        <span class="chip">✨ Strong Values</span>
+      </div>
+    </div>
+    <div class="hero">
+      <h1 class="display">Good day, teacher.</h1>
+      <p>Here's how today's attendance is shaping up across all 8 classes.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><b id="homePresent">0</b><span>Present today</span></div>
+        <div class="hero-stat"><b id="homeAbsent">0</b><span>Absent today</span></div>
+        <div class="hero-stat"><b id="homeUnmarked">0</b><span>Not yet marked</span></div>
+      </div>
+    </div>
+    <p class="section-label">Classes</p>
+    <div class="class-grid" id="classGrid"></div>
+  </section>
+
+  <section id="view-attendance">
+    <div class="datepick">
+      <label for="dateInput">Date</label>
+      <input type="date" id="dateInput" onchange="onDateChange()">
+    </div>
+    <div class="class-strip" id="classStrip"></div>
+
+    <div class="panel">
+      <div class="row">
+        <input type="text" id="studentInput" placeholder="Add a student to this class" onkeydown="if(event.key==='Enter')addStudent()">
+        <button class="btn btn-primary" onclick="addStudent()">Add</button>
+      </div>
+      <div class="error" id="error"></div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="n" id="presentCount">0</div><div class="l">Present</div></div>
+      <div class="stat-box"><div class="n" id="absentCount">0</div><div class="l">Absent</div></div>
+      <div class="stat-box"><div class="n" id="unmarkedCount">0</div><div class="l">Unmarked</div></div>
+    </div>
+
+    <div class="panel">
+      <div id="studentList"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="resetDay()">Reset day</button>
+      <button class="btn btn-ghost" onclick="downloadReport()">Export CSV</button>
+      <button class="btn btn-primary" onclick="saveDay()">Save attendance</button>
+    </div>
+  </section>
+</div>
+
+<div class="saved-toast" id="toast">Saved</div>
+
+<script src="script.js"></script>
+</body>
+</html>
